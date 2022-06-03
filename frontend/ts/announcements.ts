@@ -6,7 +6,7 @@ declare interface Window {
     };
 }
 
-const notificationSound = new Audio(require("../sounds/notification.ogg"));
+const notificationSound = new Audio((new URL("../sounds/notification.ogg", import.meta.url)).toString());
 
 // Stores the last announcement and clarification read.
 interface Store {
@@ -24,12 +24,12 @@ window.announcements = (() => {
         localStorage.setItem(announcementKey, JSON.stringify(x));
     // Set a default value
     localStorage.getItem(announcementKey) === null ||
-    get().contestId !== window.contestId
+        get().contestId !== window.contestId
         ? set({
-              contestId: window.contestId,
-              lastAnnouncement: 0,
-              lastClarification: 0,
-          })
+            contestId: window.contestId,
+            lastAnnouncement: 0,
+            lastClarification: 0,
+        })
         : void 0;
     // Set announcements count!!
     const messagesCounter = document.getElementById(
@@ -106,7 +106,7 @@ window.announcements = (() => {
             )) {
                 if (
                     Number(item.getAttribute("data-id")) >
-                        store.lastClarification &&
+                    store.lastClarification &&
                     item.getAttribute("data-responded") === "true"
                 ) {
                     item.classList.add("bg-green-200", "hover:bg-green-300");

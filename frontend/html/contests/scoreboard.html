@@ -31,9 +31,9 @@
         class="text-btn hover:text-green-600">[CSV (scores only)]</a>
 </div>
 <div id="scoreboard"></div>
-<script>
+<script type="module">
     document.initialScoreboard = JSON.parse("{{ json .JSON }}");
     document.scoreboardJSONLink = '/contests/{{.Contest.ID}}/scoreboard/json';
 </script>
-<script src="../../ts/scoreboard/index.tsx"></script>
+<script type="module" src="../../ts/scoreboard/index.tsx"></script>
 {{ end }}
